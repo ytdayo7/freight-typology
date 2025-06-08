@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貨物交通タイポロジー</title>
+    <link rel="stylesheet" href="bootstrap/lib/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="trial.css">
+</head>
+<body>
+    <div class="title-box">
+    <h1><i class="bi bi-truck"></i> 貨物交通タイポロジー</h1>
+    <p>7大都市圏の市区町村を貨物交通に関する因子をもとに11のクラスタに分類</p>
+    </div>
+    <div class="main-container">
+        <!-- 地図 -->
+        <div class="map-frame">
+        <div id="loading" style="text-align:center; padding-top: 20px;">🔄 地図を読み込み中...</div>
+        <iframe id="mapFrame" src="typology_result.html" width="100%" height="100%" frameborder="0" onload="document.getElementById('loading').style.display='none';"></iframe>
+        </div>
+        <!-- クラスタ説明 -->
+        <div class="description-panel">
+            <h2 class="sticky-top bg-white pb-2">クラスタの特徴</h2>
+            <div class="scroll-area">
+                <div class="cluster-section">
+                    <!-- トリガーボタン（Cluster 1） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster1">
+                    <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #6495ed;"></div>
+                        <div>
+                            <strong>urban core</strong><br>高密度中心部。貨物発生は多く、交通ネットワーク充実。
+                        </div>
+                    </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster1" tabindex="-1" aria-labelledby="modalLabelCluster1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster1">Cluster 1: Urban Core</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>urbanization(0.89)と freight production(0.67)が高い得点を
+                            持つことから、都市化された高密度の都市であるとともに貨物の移動が活発であることを示して
+                            いる。また、network density(0.63)も高い得点を持ち、交通網が高い密度で整備されていることが
+                            分かる。しかし、residential development(0.37)の得点は全クラスタの中で最も低い。これは、居
+                            住地系の用途地域割合が小さいことに起因しており、住宅街などの立地は少ない。事業所や商業
+                            施設、高密度な住居が多いことから貨物交通に関しては、サプライチェーンの末端部分にあたる
+                            小口配送がメインに行われるクラスタだと考えられる。駐車スペースの不足、高密度道路におけ
+                            る路肩駐車など、地域環境に負の外部性をもたらす可能性も高い。このクラスタに属する市区町
+                            村は、各都市圏の中心的な役割を担う都市となっている。</p>
+                            <p>都市例：千代田区、新宿区、天王寺区、中京区</p>
+                            <img src="images/NullCluster_1.png" alt="Cluster 1 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 2） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster2">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #7ec98f;"></div>
+                        <div>
+                            <strong>urban residential</strong><br>都市部の住宅地。いわゆるベッドタウン。生活物資の配送需要が大きい。交通ネットワークは中程度。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster2" tabindex="-1" aria-labelledby="modalLabelCluster2" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster2">Cluster 2: Urban Residential</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>residential development(0.85)がどのクラスタよりも
+                            高い得点を持つことから居住地がメインのベットタウンである。heavy manufacturing(0.35)と
+                            network density(0.29)は比較的低い得点を持つ。工業は盛んでなく、高速など大規模な交通網の整
+                            備は少ない。このクラスタに属する市区町村は、各都市圏の中心地の周辺に位置するベッドタウ
+                            ンの役割を担うと考えらえる。交通に関しては、居住地が多く存在する影響から地域の一般交通
+                            が盛んであるが、それに比べ、貨物交通の発着は少ないことがfreight production(0.44)の得点の
+                            低さから示される。関東大都市圏を見ると、世田谷区から国分寺市までの周辺や横浜市の内陸の
+                            区、千葉市の内陸の区、四街道市などが該当する。</p>
+                            <p>都市例：世田谷区、保土ヶ谷区、名東区、手稲区
+                            </p>
+                            <img src="images/NullCluster_2.png" alt="Cluster 2 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 3） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster3">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #e57373;"></div>
+                        <div>
+                            <strong>industry residential mix</strong><br>重工場と住宅が混在。生活・産業両方の物流が発生。交通ネットワークは良い。
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster3" tabindex="-1" aria-labelledby="modalLabelCluster3" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster3">Cluster 3: industry residential mix</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>heavy manufacturing(0.62)と network 
+                                density(0.53)の得点が比較的高く、residential development(0.75)の得点も高い。高密度地域で工
+                                業が盛んであるとともに、大規模交通インフラが整備された地域である。高い居住地要素と高い
+                                重工業要素を持つため、工業が居住地に影響を及ぼしている可能性がある。特に交通において、
+                                大規模な貨物交通と一般交通の混在から混雑が多く発生し、地域環境に負の外部性をもたらしや
+                                すい地域である。このクラスタは、都市圏の中心地周辺に位置し、沿岸から少し内陸に入った場
+                                所に多く分布している。特に近畿大都市圏では、湾岸沿いの市区町村と中心地の市区町村を囲う
+                                ように分布している。関東大都市圏では、中心地の東側、東京から千葉にかけて分布が見られる。</p>
+                                <p>都市例：足立区、海老名市、西宮市、市川市
+                                </p>
+                            <img src="images/NullCluster_3.png" alt="Cluster 3 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 4） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster4">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #ee9929;"></div>
+                        <div>
+                            <strong>low dense hinterland</strong><br>低密度だが工業団地等は存在。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster4" tabindex="-1" aria-labelledby="modalLabelCluster4" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster4">Cluster 4: low dense hinterland</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>urbanization(0.39)の得点は低く、residential 
+                                development(0.68)の得点は中程度だが、industrial hinterland(0.67)の得点が全クラスタの中でも
+                                一番高くなっている。これは、鉱業や林業または、化学工業など特徴のある産業の生産や取扱が
+                                多い後背地であることを表しており、製造品出荷額が高い値になっている。しかし、network 
+                                density(0.23)に関しては得点が低く、交通の便は良くない。後背地に関連する大型貨物の輸送に
+                                おいて、交通インフラの整備が少ないということは、地域交通に負荷がかかる可能性が高い。関
+                                東大都市圏で見ると、埼玉県の熊谷市周辺エリアや千葉県の成田市周辺エリア、木更津市、小田原
+                                市などがこのクラスタに当てはまる。札幌大都市圏は、札幌市を囲うように小樽市、石狩市、恵
+                                庭市、千歳市、江別市などが該当する。近畿大都市圏を見ると、滋賀県から京都府にかけてのエ
+                                リアで見られる。</p>
+                                <p>都市例：小田原市、熊谷市、石巻市、近江八幡市</p>
+                            <img src="images/NullCluster_4.png" alt="Cluster 4 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 5） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster5">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #ba9fe0;"></div>
+                        <div>
+                            <strong>suburban residential</strong><br>郊外の住宅地。重工業も混在しているが、交通ネットワークは良くない。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster5" tabindex="-1" aria-labelledby="modalLabelCluster5" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster5">Cluster 5: suburban residential</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>全体的にどの因子も中程度の得点を持つ。network 
+                                density(0.21)は低いが、residential development(0.80)は二番目に高い得点となっている。重工業
+                                要素や居住地要素が中程度だが、それに対して、交通網の整備度合いが低くなっている。また、cluster3(industry residential mix)ほどではないが、貨物交通と一般交通の混在も課題になる可能性
+                                が考えられる。関東大都市圏での分布をみてみると、神奈川県藤沢市から北に向かって東京都所
+                                沢市にかけて南北に分布している。さらにさいたま市の北側を通り千葉県船橋市周辺まで東京を
+                                囲うような分布になっている。中京大都市圏では、豊田市と名古屋市の中心地の間に挟まれるよ
+                                うに南北に分布をしている。近畿大都市圏では宇治市から大阪中心地に向けて南西方向に向かっ
+                                て分布している。 </p>
+                                <p>都市例：藤沢市、宇治市、日進市、安芸区</p>
+                            <img src="images/NullCluster_5.png" alt="Cluster 5 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 6） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster6">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #d2b48c;"></div>
+                        <div>
+                            <strong>low dense isolated</strong><br>低密度地域。交通ネットワークが悪く、物流アクセスが課題。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster6" tabindex="-1" aria-labelledby="modalLabelCluster6" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster6">Cluster 6: low dense isolated</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>urbanization(0.29)、freight production(0.22)、
+                                network density(0.10)、heavy manufacturing(0.35)の得点が最も低いことから、貨物の発生も生産
+                                量も少なく、交通網も簡素な低密度地域であることが分かる。都市圏の端に位置する市区町村が
+                                多く、関東大都市圏をでは房総半島の太平洋沿岸部、奥多摩市などが該当する。北九州・福岡大
+                                都市圏で見ると福岡県の内陸部にまとまって分布している。仙台大都市圏では、仙台市の北側の
+                                市区町村に多くみられる。札幌大都市圏では、中心地の東側の岩見沢市周辺が該当する。 </p>
+                                <p>都市例：奥多摩市、白子町、岩見沢市、宇陀市</p>
+                            <img src="images/NullCluster_6.png" alt="Cluster 6 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 7） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster7">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #b6deaf;"></div>
+                        <div>
+                            <strong>low dense connected</strong><br>低密度な地域ながら幹線道路・高速沿いで交通アクセス良好。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster7" tabindex="-1" aria-labelledby="modalLabelCluster7" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster7">Cluster 7: low dense connected</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>cluster6 と同じような因子得点の構成だが、大き
+                                な違いはnetwork density(0.47)である。低密度で貨物量も少ないが、交通網の整備が高い得点を
+                                得ている。大規模交通である高速道路の通り道であることからICアクセスが良いことがnetwork 
+                                density(0.47)の高い要因となっている。このクラスタは、高速道路が横断していて IC があるが、
+                                地域自体は低密度であるため、交通許容容量は大きくない場合が多い。IC付近に立地する施設は
+                                交通の便がいいと言えるが、ICから離れた場所はかなり不便な立地である可能性がある。関東大
+                                都市圏で見ると、東名高速道路が通っている中井町、大井町、松田町、山北町などが該当する。ま
+                                た、関越自動車道が通る東松山市や滑川町、東北自動車道が通る加須市、羽生市なども該当する。
+                                近畿大都市圏では、中国自動車道の通る加西市や加東市、三木市など内陸の市区町村が該当する。</p>
+                            <p>都市例：常総市、加西市、北広島市、土岐市</p>
+                            <img src="images/NullCluster_7.png" alt="Cluster 7 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 8） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster8">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #f4acd0;"></div>
+                        <div>
+                            <strong>middle dense hinterland</strong><br>住宅は中密度。重工業等の団地などもみられる後背地。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster8" tabindex="-1" aria-labelledby="modalLabelCluster8" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster8">Cluster 8: middle dense hinterland</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>密度と貨物発生要素、居住地要素は中程度だ
+                                が、工業は比較的高い値を持つ。特にindustrial hinterland(0.66)の得点は全クラスタの中で2番
+                                目に高い値を持つことから、重工業だけでなく特徴を持つ産業も強い地域である。交通ネットワ
+                                ークも整備されている。特徴的な市区町村は、中京都市圏の自動車産業が盛んな豊田市周辺と石
+                                油化学が盛んな四日市市である。豊田市周辺は豊川市、岡崎市、春日井市、瀬戸市などが該当す
+                                る。また、近畿大都市圏の姫路市、加古川市や大阪港の南側沿岸の岸和田市、泉佐野市、貝塚氏、
+                                和歌山市など、大規模港湾から少し離れた沿岸に位置する市区町村が該当している。関東大都市
+                                圏を見ると、厚木市、久喜市、川越市、狭山市など圏央道が通る市区町村に多く分布している。広
+                                島大都市圏の造船業や鉄鋼業が盛んな呉市や林業が盛んな廿日市市が該当しているのも特徴的で
+                                ある。 </p>
+                            <p>都市例：厚木市、豊田市、呉市、四日市市</p>
+                            <img src="images/NullCluster_8.png" alt="Cluster 8 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 9） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster9">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #f4c88c;"></div>
+                        <div>
+                            <strong>heavy manufacturing isolated</strong><br>主に沿岸部の大工場がある地域。交通ネットワークが低密度。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster9" tabindex="-1" aria-labelledby="modalLabelCluster9" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster9">Cluster 9: heavy manufacturing isolated</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>heavy manufacturing(0.76)が 2 番目に高
+                                く、port logistics(0.76)も高い、湾岸の重工業が盛んな都市である。一方、urbanization(0.46)と
+                                network density(0.11)は低い。該当する市区町村数は一番少ないが、重工業が盛んであるにも関わ
+                                らず、大規模交通のアクセスが悪いという特徴は、地域の交通に多大な影響を与えると考えられ
+                                る。該当するのは、袖ヶ浦市、知多半島中央部、北九州市若松区、蒲郡市、播磨町等である。</p>
+                                <p>都市例：袖ヶ浦市、若松区、蒲郡市、知多市
+                                </p>
+                            <img src="images/NullCluster_9.png" alt="Cluster 9 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 10） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster10">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #b0b0e0;"></div>
+                        <div>
+                            <strong>middle dense residential</strong><br>中密度の住宅地。交通ネットワークは良くない。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster10" tabindex="-1" aria-labelledby="modalLabelCluster10" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster10">Cluster 10: middle dense residential</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>全体的に産業の要素は低く、居住地要素が
+                                強くなっている地域である。Cluster2に似た因子得点の構成だが、urbanization(0.47)が低く、
+                                それほど高密度な都市ではない。中密度な地域の中心居住地である。交通インフラの密度が低いこ
+                                とが特徴であり、大規模な交通には向かないクラスタである。関東大都市圏だと逗子市、葉山市、
+                                大磯町、二宮町、横瀬町などが該当する。近畿大都市圏を見ると、大阪府と奈良県の境目周辺と
+                                猪名川町、島本町などが該当する。 </p>
+                            <p>都市例：大磯町、横瀬町、扶桑町、逗子市</p>
+                            <img src="images/NullCluster_10.png" alt="Cluster 10 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- トリガーボタン（Cluster 11） -->
+                    <div class="card p-2 shadow-sm card-hover" data-bs-toggle="modal" data-bs-target="#modalCluster11">
+                        <div class="d-flex align-items-start">
+                        <div class="color-box me-2 mt-1" style="background-color: #f5e663;"></div>
+                        <div>
+                            <strong>port heavy manufacturing</strong><br>港湾に隣接した重工業集積地。海上輸送＋陸上物流のハブ。
+                        </div>
+                        </div>
+                    </div>
+                    <!-- モーダル本体 -->
+                    <div class="modal fade" id="modalCluster11" tabindex="-1" aria-labelledby="modalLabelCluster11" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelCluster11">Cluster 11: port heavy manufacturing</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>heavy manufacturing(0.76)と freight 
+                                production(0.70)、port logistics(0.77)の得点が全クラスタの中で一番高くなっている。
+                                Urbanization(0.63)と network density(0.59)の得点も 2 番目に高くなっており、かなり高密度で交
+                                通網の整った、重工業が盛んな湾岸都市である。関東大都市圏では、京浜工業地帯の川崎市、大
+                                田区、品川区、江東区、磯子区、そして千葉市中央区が該当する。近畿大都市圏では、大阪港が位
+                                置する周辺の港区、此花区、住之江区、大正区、堺市、尼崎市、兵庫県だと灘区、兵庫区、長田区
+                                などが該当する。中京大都市圏は、名古屋港周辺、北九州・福岡大都市圏では北九州市の戸畑区、
+                                小倉北区、門司区、福岡市東区などが該当する。</p>
+                            <p>都市例：川崎区、大田区、大正区、小倉北区</p>
+                            <img src="images/NullCluster_11.png" alt="Cluster 11 Radar Chart" style="width: 80%; height: 80%;" class="img-fluid w-75 d-block mx-auto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2></h2>
+    <form>
+    <h2>クラスタ比較</h2>
+    <div class="d-flex gap-3">
+        <div class="flex-fill">
+            <label for="clusterSelect1">クラスター１</label>
+            <select name="cluster1" id="clusterSelect1" class="form-select">
+                <option selected value="">--Please choose a cluster--</option>
+                <option value="modalCluster1">urban core</option>
+                <option value="modalCluster2">urban residential</option>
+                <option value="modalCluster3">industry residential mix</option>
+                <option value="modalCluster4">low dense hinterland</option>
+                <option value="modalCluster5">suburban residential</option>
+                <option value="modalCluster6">low dense isolated</option>
+                <option value="modalCluster7">low dense connected</option>
+                <option value="modalCluster8">middle dense hinterland</option>
+                <option value="modalCluster9">heavy manufacturing isolated</option>
+                <option value="modalCluster10">middle dense residential</option>
+                <option value="modalCluster11">port heavy manufacturing</option>
+            </select>
+        </div>
+        <div class="flex-fill">
+            <label for="clusterSelect2">クラスター２</label>
+            <select name="cluster2" id="clusterSelect2" class="form-select">
+                <option selected value="">--Please choose a cluster--</option>
+                <option value="modalCluster1">urban core</option>
+                <option value="modalCluster2">urban residential</option>
+                <option value="modalCluster3">industry residential mix</option>
+                <option value="modalCluster4">low dense hinterland</option>
+                <option value="modalCluster5">suburban residential</option>
+                <option value="modalCluster6">low dense isolated</option>
+                <option value="modalCluster7">low dense connected</option>
+                <option value="modalCluster8">middle dense hinterland</option>
+                <option value="modalCluster9">heavy manufacturing isolated</option>
+                <option value="modalCluster10">middle dense residential</option>
+                <option value="modalCluster11">port heavy manufacturing</option>
+            </select>
+        </div>
+    </div>
+    <div class="mt-4">
+    <button type="button" class="btn btn-primary" id="compareButton">比較する</button>
+    </div>
+    </form>
+    <div id="comparisonArea" class="d-flex gap-4 mt-4 hidden">
+    <!-- 比較カードがここに入る -->
+    </div>
+
+    <!-- 閉じるボタン -->
+    <div class="mt-3" id="closeCompareArea" style="display: none;">
+        <button type="button" class="btn btn-outline-secondary" onclick="hideComparison()">閉じる</button>
+    </div>
+    
+
+
+    <!-- 因子の説明セクション -->
+    <div class="mt-5">
+        <h2 class="mb-4">クラスタ分類に用いた7つの因子</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            <!-- 因子1 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/factor1.png" class="card-img-top" alt="Factor 1" style="width: 80%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">因子1：Urbanization</h5>
+                        <p class="card-text">高密度な都市の因子</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 因子2 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/factor2.png" class="card-img-top" alt="Factor 2" style="width: 80%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">因子2：Freight production</h5>
+                        <p class="card-text">貨物発生に関する因子</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 因子3 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/factor3.png" class="card-img-top" alt="Factor 3" style="width: 80%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">因子3：Heavy manufacturing</h5>
+                        <p class="card-text">重工業に関する因子</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 因子4 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/factor4.png" class="card-img-top" alt="Factor 4" style="width: 80%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">因子4：Network density</h5>
+                        <p class="card-text">高速・重要物流道路などの密度の因子</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 因子5 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/factor5.png" class="card-img-top" alt="Factor 5" style="width: 80%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">因子5：Industrial hinterland</h5>
+                        <p class="card-text">鉱・林・化学工業に関する因子</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 因子6 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/factor6.png" class="card-img-top" alt="Factor 6" style="width: 80%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">因子6：Residential development</h5>
+                        <p class="card-text">居住地に関する因子</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 因子7 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/factor7.png" class="card-img-top" alt="Factor 7" style="width: 80%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">因子7：Port logistics</h5>
+                        <p class="card-text">港湾などの物流ハブに関する因子</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="trial.js"></script>
+    <script src="bootstrap/lib/bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

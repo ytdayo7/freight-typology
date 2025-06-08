@@ -1,0 +1,136 @@
+        body {
+        background-color: white;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        }
+
+        h1, h2 {
+        color: #333;
+        }
+        h1{
+            height: 50px;
+            margin: 0;
+            padding: 0;
+            font-size: 1.5rem;
+        }
+        h2{
+            height: 50px;
+            margin: 0;
+            padding:  0;
+            font-size: 1.5rem;
+        }
+        .main-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        height: calc(100vh - 175px);
+        }
+        .scroll-area{
+            flex: 1;
+            overflow-y:auto;
+            padding-right: 8px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            height: 90%;
+        }
+        .scroll-area::-webkit-scrollbar{
+            width: 0px;
+            background: transparent;
+        }
+
+        .map-frame {
+        flex: 6;
+        }
+        .map-frame,
+        .description-panel{
+            height: 100%;
+        }
+        h2.sticky-top{
+            top: 0;
+            z-index: 10;
+            background-color: white;
+            padding-bottom: 0px;
+            margin-bottom: 0;
+        }
+
+        .description-panel {
+        flex: 4;
+        max-width: 400px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;       /* 任意：スクロールバーが重ならないように */
+        }
+        /* .description-panel::-webkit-scrollbar {
+        width: 6px;
+        }
+        .description-panel::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 3px;
+        } */
+        .cluster-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        }
+
+        .color-box {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        }
+
+        .card-hover:hover {
+        background-color: #f8f9fa;
+        transition: background-color 0.2s;
+        }
+
+        a.cluster-link {
+        text-decoration: none;
+        color: inherit;
+        }
+        .title-box {
+        border-left: 5px solid #0d6efd;
+        background-color: #f8f9fa;
+        padding: 12px 16px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        }
+
+        .title-box h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin: 0;
+        }
+        .title-box p {
+        margin: 4px 0 0 0;
+        color: #666;
+        font-size: 1rem;
+        }
+
+
+            /* 🔁 レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .map-frame,
+            .description-panel {
+                height: auto;
+                width: 100%;
+            }
+
+            .main-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .scroll-area {
+                max-height: 400px;
+                height: auto;
+            }
+            }
+        /* CSSに追加（<style>内に） */
+        .hidden {
+            display: none !important;
+        }
